@@ -1,3 +1,5 @@
+from locale import currency
+
 import requests
 import json
 from tkinter import *
@@ -18,7 +20,8 @@ def exchange():
             data = response.json()
             if code in data["rates"]:
                 exchange_rate = data["rates"][code]
-                mb.showinfo("Курс обмена", f"Курс: {exchange_rate:.2f} {code} за 1 доллар")
+                c_name = cur[code] # имя валюты
+                mb.showinfo("Курс обмена", f"Курс: {exchange_rate:.2f} {c_name} за 1 доллар")
 
             else:
                 mb.showerror("Ошибка!", f"Валюта {code} не найдена!")
